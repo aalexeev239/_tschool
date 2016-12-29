@@ -272,7 +272,7 @@ function func(o) {
 
 func(obj);
 
-o.x; // 1
+o.x;     // 1
 
 
 

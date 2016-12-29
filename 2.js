@@ -179,30 +179,30 @@
 //     console.log(user); // Error
 //     let user;
 // }
-
-for (var i = 0; i < 10; i++) {
-    setTimeout(function(){
-        console.log(i);
-    }, 1000);
-}
-
-//(10) 10
-
-for (var i = 0; i < 10; i++) {
-    (function(a) {
-        setTimeout(function(){
-            console.log(a);
-        }, 1000);
-    })(i);
-}
-
-for (var i = 0; i < 10; i++) {
-    setTimeout(function(a){
-        console.log(a);
-    }.bind(null, i), 1000);
-}
-
-funcA();
+//
+// for (var i = 0; i < 10; i++) {
+//     setTimeout(function(){
+//         console.log(i);
+//     }, 1000);
+// }
+//
+// //(10) 10
+//
+// for (var i = 0; i < 10; i++) {
+//     (function(a) {
+//         setTimeout(function(){
+//             console.log(a);
+//         }, 1000);
+//     })(i);
+// }
+//
+// for (var i = 0; i < 10; i++) {
+//     setTimeout(function(a){
+//         console.log(a);
+//     }.bind(null, i), 1000);
+// }
+//
+// funcA();
 
 // function funcA () {
 //     console.log(helper());
@@ -216,19 +216,64 @@ funcA();
 //     return 'A';
 // }
 
-function funcA () {
-    console.log(helper());
+// function funcA () {
+//     console.log(helper());
+//
+//     function helper () {
+//         return 'A';
+//     }
+// }
+//
+// function funcB () {
+//     console.log(helper());
+//
+//     function helper () {
+//         return 'B';
+//     }
+// }
+//
 
-    function helper () {
-        return 'A';
+function doSomeMagicAndGetProp () {};
+
+var obj = new Object();
+var obj = {};
+var obj = {
+    x: 5
+};
+
+var user = {
+    name: 'Вася',
+    address: {
+        city: 'Москва',
+        street: 'Тверская'
     }
+};
+
+user.name; // Вася
+user.address.city // Москва
+user.secondName; // undefined
+user['name'];
+
+var prop = doSomeMagicAndGetProp(); // name
+user.prop; // undefined
+user[prop]; // Вася
+
+user.name = 'Миша';
+user.secondName = 'Боярский';
+
+var a = {x: 1};
+var b = a;
+b.x = 2;
+a.x // ?
+
+function func(o) {
+    o = {x: 2};
 }
 
-function funcB () {
-    console.log(helper());
+func(obj);
 
-    function helper () {
-        return 'B';
-    }
-}
+o.x; // 1
+
+
+
 

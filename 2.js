@@ -233,47 +233,166 @@
 // }
 //
 
-function doSomeMagicAndGetProp () {};
+// function doSomeMagicAndGetProp () {};
+//
+// var obj = new Object();
+// var obj = {};
+// var obj = {
+//     x: 5
+// };
+//
+// var user = {
+//     name: 'Вася',
+//     address: {
+//         city: 'Москва',
+//         street: 'Тверская'
+//     }
+// };
+//
+// for (var key in user) {
+//     console.log(key, user[key]);
+// }
+//
+// Object.keys(user);
+// // ["name", "address"]
+//
+//
+// user.name; // Вася
+// user.address.city // Москва
+// user.secondName; // undefined
+// user['name'];
+//
+// null.secondName; // Error
+// undefined.secondName; // Error
+//
+// var secondName = user && user.secondName;
+// var secondName = (user || {}).secondName;
+//
+// if ('secondName' in user) {/**/}
+//
+// if (user.hasOwnProperty('secondName')) {}
+//
+// var prop = doSomeMagicAndGetProp(); // name
+// user.prop; // undefined
+// user[prop]; // Вася
+//
+// user.name = 'Миша';
+// user.secondName = 'Боярский';
 
-var obj = new Object();
-var obj = {};
-var obj = {
-    x: 5
-};
+// var a = {x: 1};
+// var b = a;
+// b.x = 2;
+// a.x // ?
+
+var obj = {x: 1};
+
+// function func(o) {
+//     o = {x: 2};
+// }
+//
+// func(obj);
+// obj.x; // 1
+//
+// function func(o) {
+//     o.x = 2;
+// }
+//
+// var obj = {a: 1, b: 2};
+//
+// for (var key in obj) {
+//     console.log(key, obj[key]);
+// }
+//
+
+//
+// var greet = user.greet;
+// greet();
+// console.log(user.greet());
+//
+// function func() {
+//     console.log(this);
+// }
+//
+// func();
+
+var arr = ['Вася', 'Петя', 'Миша'];
+
+arr[0]; // Вася
+arr[2]; // Миша
+arr[8237]; // undefined
+
+arr.length; // 3
+
+arr.pop(); // Миша
+arr; // ["Вася", "Петя"]
+
+arr.push('Маша'); // 3
+arr; // ["Вася", "Петя", "Маша"]
+
+arr.shift(); // Вася
+arr.unshift('Геннадий'); // 3
+arr; // ["Геннадий", "Петя", "Маша"]
+
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+
+arr.forEach(function(item, i, arr) {
+    console.log(item);
+});
+// Геннадий
+// Петя
+// Маша
+
+var filteredArr = arr.filter(function(item) {
+   return item.length === 4;
+});
+filteredArr; // ["Петя", "Маша"]
+
+var lengthsArr = arr.map(function(item) {
+    return item.length;
+});
+
+lengthsArr; // [8, 4, 4]
+
+arr.every(function(item) {
+    return item.length === 4;
+}); // false
+
+arr.some(function(item) {
+    return item.length === 4;
+}); // true
+
+var lengthsArr = [8, 4, 4];
+
+lengthsArr.reduce(function (total, current) {
+    return total + current;
+}); // 16
+
+
+// var user = {
+//     uname: 'Вася'
+// };
+// function greet() {
+//     return this.uname + ' приветствует Вас!';
+// }
+//
+// greet.call(user); // Вася приветствует Вас!
+// greet(); // undefined приветствует Вас!
+// greet.call(window); // undefined приветствует Вас!
+//
+//
 
 var user = {
-    name: 'Вася',
-    address: {
-        city: 'Москва',
-        street: 'Тверская'
+    uname: 'Вася',
+    greet: function () {
+        return this.uname + ' приветствует Вас!';
     }
 };
 
-user.name; // Вася
-user.address.city // Москва
-user.secondName; // undefined
-user['name'];
-
-var prop = doSomeMagicAndGetProp(); // name
-user.prop; // undefined
-user[prop]; // Вася
-
-user.name = 'Миша';
-user.secondName = 'Боярский';
-
-var a = {x: 1};
-var b = a;
-b.x = 2;
-a.x // ?
-
-function func(o) {
-    o = {x: 2};
-}
-
-func(obj);
-
-o.x;     // 1
-
-
-
-
+var greet = user.greet;
+user.greet();
+user.greet.call(user);
+greet();
+greet.call(window);
+user.greet.call(window);
